@@ -283,7 +283,6 @@ input[type=number].err { border-color: rgba(220,38,38,.5); background: rgba(220,
 @media (max-width: 1800px) {
   .interp-table {
     min-width: 1080px;
-    table-layout: fixed;
   }
   .interp-table th:nth-child(1),
   .interp-table td:nth-child(1) { width: 96px; }
