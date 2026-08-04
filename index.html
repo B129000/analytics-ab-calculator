@@ -18,13 +18,13 @@
       <div class="tool-section-header">
         <div class="tool-section-title">
           <h1 data-i18n-en>A/B Test Statistical Significance Calculator</h1>
-          <h1 data-i18n-fr>Calculateur de signification statistique de test A/B</h1>
+          <h1 data-i18n-fr lang="fr">Calculateur de signification statistique de test A/B</h1>
           <p data-i18n-en>Enter visitor and conversion data for two versions. Get a statistical comparison to support your decision.</p>
-          <p data-i18n-fr>Saisissez les données de visiteurs et de conversions pour deux versions. Obtenez une comparaison statistique pour appuyer votre décision.</p>
+          <p data-i18n-fr lang="fr">Saisissez les données de visiteurs et de conversions pour deux versions. Obtenez une comparaison statistique pour appuyer votre décision.</p>
         </div>
-        <button class="language-toggle" id="lang-toggle" type="button" aria-label="Changer de langue / Switch language">
-          <span class="lbl-to-fr">Français</span>
-          <span class="lbl-to-en">EN</span>
+        <button class="language-toggle" id="lang-toggle" type="button" aria-label="Switch to French">
+          <span class="lbl-to-fr" lang="fr">Français</span>
+          <span class="lbl-to-en" lang="en">English</span>
         </button>
       </div>
 
@@ -37,29 +37,31 @@
             <span class="version-dot"></span>
             <span class="version-label">Version A</span>
             <span class="version-tag" data-i18n-en>Control</span>
-            <span class="version-tag" data-i18n-fr>Témoin</span>
+            <span class="version-tag" data-i18n-fr lang="fr">Témoin</span>
           </div>
           <div class="version-fields">
             <div class="field">
               <label class="field-label" for="visA">
-                <span data-i18n-en>Number of visitors</span><span data-i18n-fr>Nombre de visiteurs</span>
+                <span data-i18n-en>Number of visitors</span><span data-i18n-fr lang="fr">Nombre de visiteurs</span>
               </label>
-              <input id="visA" name="visA" type="number" inputmode="numeric" min="0" step="1" value="0"/>
+              <input id="visA" name="visA" type="number" inputmode="numeric" min="0" step="1" value="0" aria-invalid="false" aria-describedby="visA-error"/>
               <span class="field-hint" data-i18n-en>Total visitors who saw this version</span>
-              <span class="field-hint" data-i18n-fr>Total des visiteurs ayant vu cette version</span>
+              <span class="field-hint" data-i18n-fr lang="fr">Total des visiteurs ayant vu cette version</span>
+              <span class="field-error" id="visA-error"></span>
             </div>
             <div class="field">
               <label class="field-label" for="convA">
-                <span data-i18n-en>Number of conversions</span><span data-i18n-fr>Nombre de conversions</span>
+                <span data-i18n-en>Number of conversions</span><span data-i18n-fr lang="fr">Nombre de conversions</span>
               </label>
-              <input id="convA" name="convA" type="number" inputmode="numeric" min="0" step="1" value="0"/>
+              <input id="convA" name="convA" type="number" inputmode="numeric" min="0" step="1" value="0" aria-invalid="false" aria-describedby="convA-error"/>
               <span class="field-hint" data-i18n-en>Visitors who completed the goal</span>
-              <span class="field-hint" data-i18n-fr>Visiteurs ayant atteint l'objectif</span>
+              <span class="field-hint" data-i18n-fr lang="fr">Visiteurs ayant atteint l'objectif</span>
+              <span class="field-error" id="convA-error"></span>
             </div>
             <div class="rate-badge">
               <span class="rate-badge-label" data-i18n-en>Conversion rate</span>
-              <span class="rate-badge-label" data-i18n-fr>Taux de conversion</span>
-              <span class="rate-badge-value" id="rateA" aria-live="polite">–</span>
+              <span class="rate-badge-label" data-i18n-fr lang="fr">Taux de conversion</span>
+              <span class="rate-badge-value" id="rateA">–</span>
             </div>
           </div>
         </div>
@@ -70,29 +72,31 @@
             <span class="version-dot"></span>
             <span class="version-label">Version B</span>
             <span class="version-tag" data-i18n-en>Variant</span>
-            <span class="version-tag" data-i18n-fr>Variante</span>
+            <span class="version-tag" data-i18n-fr lang="fr">Variante</span>
           </div>
           <div class="version-fields">
             <div class="field">
               <label class="field-label" for="visB">
-                <span data-i18n-en>Number of visitors</span><span data-i18n-fr>Nombre de visiteurs</span>
+                <span data-i18n-en>Number of visitors</span><span data-i18n-fr lang="fr">Nombre de visiteurs</span>
               </label>
-              <input id="visB" name="visB" type="number" inputmode="numeric" min="0" step="1" value="0"/>
+              <input id="visB" name="visB" type="number" inputmode="numeric" min="0" step="1" value="0" aria-invalid="false" aria-describedby="visB-error"/>
               <span class="field-hint" data-i18n-en>Total visitors who saw this version</span>
-              <span class="field-hint" data-i18n-fr>Total des visiteurs ayant vu cette version</span>
+              <span class="field-hint" data-i18n-fr lang="fr">Total des visiteurs ayant vu cette version</span>
+              <span class="field-error" id="visB-error"></span>
             </div>
             <div class="field">
               <label class="field-label" for="convB">
-                <span data-i18n-en>Number of conversions</span><span data-i18n-fr>Nombre de conversions</span>
+                <span data-i18n-en>Number of conversions</span><span data-i18n-fr lang="fr">Nombre de conversions</span>
               </label>
-              <input id="convB" name="convB" type="number" inputmode="numeric" min="0" step="1" value="0"/>
+              <input id="convB" name="convB" type="number" inputmode="numeric" min="0" step="1" value="0" aria-invalid="false" aria-describedby="convB-error"/>
               <span class="field-hint" data-i18n-en>Visitors who completed the goal</span>
-              <span class="field-hint" data-i18n-fr>Visiteurs ayant atteint l'objectif</span>
+              <span class="field-hint" data-i18n-fr lang="fr">Visiteurs ayant atteint l'objectif</span>
+              <span class="field-error" id="convB-error"></span>
             </div>
             <div class="rate-badge">
               <span class="rate-badge-label" data-i18n-en>Conversion rate</span>
-              <span class="rate-badge-label" data-i18n-fr>Taux de conversion</span>
-              <span class="rate-badge-value" id="rateB" aria-live="polite">–</span>
+              <span class="rate-badge-label" data-i18n-fr lang="fr">Taux de conversion</span>
+              <span class="rate-badge-value" id="rateB">–</span>
             </div>
           </div>
         </div>
@@ -104,11 +108,11 @@
         <section class="section card">
           <div class="card-header">
             <span class="card-title" data-i18n-en>Results summary</span>
-            <span class="card-title" data-i18n-fr>Résumé des résultats</span>
+            <span class="card-title" data-i18n-fr lang="fr">Résumé des résultats</span>
           </div>
           <div class="card-body">
             <div class="winner-block tie" id="winner-block">
-              <div class="winner-name" id="winner" aria-live="polite">–</div>
+              <div class="winner-name" id="winner">–</div>
               <div class="winner-desc" id="winner-desc">–</div>
             </div>
             <div class="result-row">
@@ -119,10 +123,10 @@
                   data-tip-title-fr="Amélioration relative"
                   data-tip-fr="Dans quelle mesure la version B performe mieux (ou moins bien) que la version A. Formule : (Taux B − Taux A) ÷ Taux A × 100.">
                   <span data-i18n-en>Relative improvement</span>
-                  <span data-i18n-fr>Amélioration relative</span>
+                  <span data-i18n-fr lang="fr">Amélioration relative</span>
                 </span>
               </span>
-              <span class="result-val" id="improve" aria-live="polite">–</span>
+              <span class="result-val" id="improve">–</span>
             </div>
             <div class="result-row">
               <span class="result-key">
@@ -132,15 +136,15 @@
                   data-tip-title-fr="Différence absolue (points de pourcentage)"
                   data-tip-fr="L'écart brut entre les taux de conversion. Exemple : si la version A convertit à 5 % et la version B à 7 %, la différence absolue est de +2,00 pp.">
                   <span data-i18n-en>Absolute difference</span>
-                  <span data-i18n-fr>Différence absolue</span>
+                  <span data-i18n-fr lang="fr">Différence absolue</span>
                 </span>
               </span>
-              <span class="result-val" id="abs-diff" aria-live="polite">–</span>
+              <span class="result-val" id="abs-diff">–</span>
             </div>
             <details class="adv-details">
               <summary>
                 <span data-i18n-en>&nbsp;Statistical Details</span>
-                <span data-i18n-fr>&nbsp;Détails statistiques</span>
+                <span data-i18n-fr lang="fr">&nbsp;Détails statistiques</span>
               </summary>
               <div class="stat-grid">
                 <div class="stat-cell">
@@ -150,10 +154,10 @@
                       data-tip-en="Combined conversion rate across both groups. Used internally to calculate the test statistic."
                       data-tip-title-fr="Proportion groupée"
                       data-tip-fr="Taux de conversion combiné des deux groupes. Utilisé en interne pour calculer la statistique de test.">
-                      <span data-i18n-en>Pooled proportion</span><span data-i18n-fr>Proportion groupée</span>
+                      <span data-i18n-en>Pooled proportion</span><span data-i18n-fr lang="fr">Proportion groupée</span>
                     </span>
                   </div>
-                  <div class="stat-cell-value" id="pooled" aria-live="polite">–</div>
+                  <div class="stat-cell-value" id="pooled">–</div>
                 </div>
                 <div class="stat-cell">
                   <div class="stat-cell-label">
@@ -162,10 +166,10 @@
                       data-tip-en="How much random variation we expect in the difference between the two conversion rates."
                       data-tip-title-fr="Erreur standard"
                       data-tip-fr="La variation aléatoire attendue dans la différence entre les deux taux de conversion.">
-                      <span data-i18n-en>Standard error</span><span data-i18n-fr>Erreur standard</span>
+                      <span data-i18n-en>Standard error</span><span data-i18n-fr lang="fr">Erreur standard</span>
                     </span>
                   </div>
-                  <div class="stat-cell-value" id="se" aria-live="polite">–</div>
+                  <div class="stat-cell-value" id="se">–</div>
                 </div>
                 <div class="stat-cell">
                   <div class="stat-cell-label">
@@ -174,10 +178,10 @@
                       data-tip-en="How many standard errors the observed difference is from zero. A larger absolute value means a more reliable result."
                       data-tip-title-fr="Score Z"
                       data-tip-fr="Le nombre d'erreurs standard qui séparent la différence observée de zéro. Une valeur absolue plus grande signifie un résultat plus fiable.">
-                      <span data-i18n-en>Z‑score</span><span data-i18n-fr>Score Z</span>
+                      <span data-i18n-en>Z‑score</span><span data-i18n-fr lang="fr">Score Z</span>
                     </span>
                   </div>
-                  <div class="stat-cell-value" id="z" aria-live="polite">–</div>
+                  <div class="stat-cell-value" id="z">–</div>
                 </div>
                 <div class="stat-cell">
                   <div class="stat-cell-label">
@@ -186,10 +190,10 @@
                       data-tip-en="The chance that a difference this large happened randomly. Below 0.05 is generally considered reliable."
                       data-tip-title-fr="Valeur p"
                       data-tip-fr="La probabilité que cette différence soit due au hasard. En dessous de 0,05 est généralement considéré comme fiable.">
-                      <span data-i18n-en>P‑value</span><span data-i18n-fr>Valeur p</span>
+                      <span data-i18n-en>P‑value</span><span data-i18n-fr lang="fr">Valeur p</span>
                     </span>
                   </div>
-                  <div class="stat-cell-value" id="p" aria-live="polite">–</div>
+                  <div class="stat-cell-value" id="p">–</div>
                 </div>
               </div>
             </details>
@@ -197,12 +201,13 @@
         </section>
 
         <section class="section card">
-          <div class="card-header">
-            <div class="card-icon green">✓</div>
+          <div class="card-header" id="confidence-table-heading">
+            <div class="card-icon green" aria-hidden="true">✓</div>
             <span class="card-title" data-i18n-en>Are my results statistically significant?</span>
-            <span class="card-title" data-i18n-fr>Mes résultats sont-ils statistiquement significatifs ?</span>
+            <span class="card-title" data-i18n-fr lang="fr">Mes résultats sont-ils statistiquement significatifs ?</span>
           </div>
-          <div style="overflow-x:auto">
+          <div id="confidence-status" class="sr-only" aria-live="polite" aria-atomic="true"></div>
+          <div class="interp-table-scroll" tabindex="0" role="region" aria-labelledby="confidence-table-heading">
             <table class="interp-table" aria-describedby="interphelp">
               <thead>
                 <tr>
@@ -212,13 +217,13 @@
                       data-tip-en="How certain you want to be that the difference is real and not due to chance."
                       data-tip-title-fr="Niveau de confiance"
                       data-tip-fr="À quel point vous voulez être certain que la différence est réelle et non due au hasard.">
-                      <span data-i18n-en>Confidence</span><span data-i18n-fr>Confiance</span>
+                      <span data-i18n-en>Confidence</span><span data-i18n-fr lang="fr">Confiance</span>
                     </span>
                   </th>
-                  <th scope="col"><span data-i18n-en>Reliable?</span><span data-i18n-fr>Fiable ?</span></th>
-                  <th scope="col"><span data-i18n-en>What it means</span><span data-i18n-fr>Ce que cela signifie</span></th>
-                  <th scope="col"><span data-i18n-en>When to use it</span><span data-i18n-fr>Quand l'utiliser</span></th>
-                  <th scope="col"><span data-i18n-en>Guidance</span><span data-i18n-fr>Conseils</span></th>
+                  <th scope="col"><span data-i18n-en>Reliable?</span><span data-i18n-fr lang="fr">Fiable ?</span></th>
+                  <th scope="col"><span data-i18n-en>What it means</span><span data-i18n-fr lang="fr">Ce que cela signifie</span></th>
+                  <th scope="col"><span data-i18n-en>When to use it</span><span data-i18n-fr lang="fr">Quand l'utiliser</span></th>
+                  <th scope="col"><span data-i18n-en>Guidance</span><span data-i18n-fr lang="fr">Conseils</span></th>
                 </tr>
               </thead>
               <tbody id="tbody"></tbody>
@@ -227,7 +232,7 @@
           <div class="interp-help">
             <p id="interphelp">
               <span data-i18n-en>Confidence level tells you how certain you can be that the difference is real. At 95% confidence, there is only a 5% chance the result happened at random.</span>
-              <span data-i18n-fr>Le niveau de confiance indique à quel point vous pouvez être certain que la différence est réelle. À 95 % de confiance, il n'y a que 5 % de chance que le résultat soit dû au hasard.</span>
+              <span data-i18n-fr lang="fr">Le niveau de confiance indique à quel point vous pouvez être certain que la différence est réelle. À 95 % de confiance, il n'y a que 5 % de chance que le résultat soit dû au hasard.</span>
             </p>
           </div>
         </section>
