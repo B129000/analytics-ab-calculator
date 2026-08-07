@@ -38,7 +38,7 @@ Inputs (4 numbers)
         │
         ▼
   compute()  [line 678]
-  ├── Validation: flags convX > visX or any negative value (red border + clears results)
+  ├── Validation: requires safe whole numbers, visitors > 0, and conversions between 0 and visitors
   ├── Conversion rates:       pA = xA / nA,  pB = xB / nB
   ├── Relative improvement:   (pB − pA) / pA
   ├── Absolute difference:    pB − pA  (percentage points)
@@ -149,9 +149,9 @@ All UI strings are in the `STRINGS` object at lines 555–606. Two patterns are 
 **Static labels (not touched by JS) — use HTML attributes:**
 ```html
 <span data-i18n-en>Your English text</span>
-<span data-i18n-fr>Votre texte français</span>
+<span data-i18n-fr lang="fr">Votre texte français</span>
 ```
-CSS hides the inactive language automatically via `[data-lang]` on `<html>`.
+CSS hides the inactive language automatically via `[data-lang]` on `<html>`. JavaScript also updates the root `lang` attribute when the active language changes.
 
 **Dynamic values rendered by JS — use `s().yourKey`:**
 `s()` returns `STRINGS[currentLanguage]`, so `s().tie` gives the right string for the active language. Add your key to both `STRINGS.en` and `STRINGS.fr`, then call it from `compute()`.
@@ -162,7 +162,7 @@ CSS hides the inactive language automatically via `[data-lang]` on `<html>`.
 
 1. Add a display element in the HTML results area:
    ```html
-   <span id="my-metric" aria-live="polite">–</span>
+   <span id="my-metric">–</span>
    ```
 2. Add strings to both `STRINGS.en` and `STRINGS.fr`
 3. Compute the value inside `compute()` and assign it:
@@ -170,6 +170,8 @@ CSS hides the inactive language automatically via `[data-lang]` on `<html>`.
    $('#my-metric').textContent = ...;
    ```
 4. Call `flash($('#my-metric'))` immediately after to trigger the update animation
+
+Do not add live-region semantics to individual result values. After all visible results have been updated, update the existing `#confidence-status` live region once with a concise English or French summary of the completed result.
 
 ---
 
@@ -195,8 +197,8 @@ Importing jStat or stdlib for a single CDF call is unjustified in a zero-depende
 **Live calculation, no submit button**
 The audience forgets to click buttons. Live updates also make validation errors immediately visible and give instant feedback while entering numbers, which reduces data entry mistakes.
 
-**NaN propagation is intentional**
-When inputs are missing or invalid, `pA` and `pB` become `NaN` and every downstream result becomes `NaN`, which renders as `—`. Do not replace missing inputs with `0` — that would produce valid-looking but meaningless results (0% conversion rate is a real, distinct state).
+**Invalid input stops calculation**
+Missing or invalid input stops the calculation. The interface displays a specific, programmatically associated error for each affected field, sets `aria-invalid="true"`, clears downstream results to `—`, and updates the single result-summary live region with a concise validation summary. Do not replace missing inputs with `0` — that would produce valid-looking but meaningless results (0% conversion rate is a real, distinct state).
 
 ---
 
@@ -247,9 +249,6 @@ The test always checks whether B differs from A in either direction. For users w
 **No correction for multiple comparisons**
 If a user checks significance daily during a two-week test, the actual false positive rate inflates well above the stated confidence level. The tool provides no peeking warning.
 
-**Validation is visual, not blocking**
-When conversions exceed visitors, inputs turn red and results blank out — but there is no error message explaining why. A user on a small screen may miss the red border entirely.
-
 **No automated tests**
 All statistical logic is inside `compute()` mixed with DOM manipulation. There are no unit tests. Before modifying the math, manually verify against a reference calculator using the example values in this README.
 
@@ -270,7 +269,7 @@ For |z| > 6 the polynomial approximation degrades. In practice, if z exceeds 6 t
 
 **Handle with care:**
 - `phi()` — do not rewrite without verifying `phi(1.96) ≈ 0.97500` and `phi(0) = 0.5`
-- `compute()` NaN propagation — do not add default fallback values of `0` for missing inputs; that silently produces wrong results
+- `compute()` validation and result announcements — preserve the field-specific errors, `aria-invalid` state, and single result-summary live region; do not add live semantics to individual metrics
 - CSS i18n rules — do not add inline `display:` styles to elements with `data-i18n-en` or `data-i18n-fr`; it will break language-specific rendering
 
 **Recommended next improvements (priority order):**
